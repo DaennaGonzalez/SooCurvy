@@ -935,3 +935,110 @@
   }
 })();
 
+document.addEventListener("DOMContentLoaded", () => {
+  initSliderPrendas();
+});
+
+function initSliderPrendas() {
+  const track = document.getElementById("prendasTrack");
+  const prev = document.getElementById("prendasPrev");
+  const next = document.getElementById("prendasNext");
+  const viewport = document.getElementById("prendasViewport");
+
+  if (!track || !prev || !next || !viewport) return;
+
+  const cards = [...track.querySelectorAll(".card-prenda")];
+  if (!cards.length) return;
+
+  const state = {
+    index: 0,
+    visibles: 4,
+    maxIndex: 0,
+    cardWidth: 0,
+    gap: 20
+  };
+
+  function getVisibles() {
+    const w = window.innerWidth;
+    if (w <= 576) return 1;
+    if (w <= 992) return 2;
+    if (w <= 1200) return 3;
+    return 4;
+  }
+
+  function measure() {
+    const first = cards[0];
+    if (!first) return;
+
+    const styles = window.getComputedStyle(track);
+    state.gap = parseFloat(styles.gap || "20");
+    state.cardWidth = first.getBoundingClientRect().width;
+    state.visibles = getVisibles();
+    state.maxIndex = Math.max(0, cards.length - state.visibles);
+
+    if (state.index > state.maxIndex) {
+      state.index = state.maxIndex;
+    }
+  }
+
+  function update() {
+    measure();
+    const offset = state.index * (state.cardWidth + state.gap);
+    track.style.transform = `translateX(-${offset}px)`;
+
+    prev.disabled = state.index <= 0;
+    next.disabled = state.index >= state.maxIndex;
+
+    prev.style.opacity = state.index <= 0 ? "0.45" : "1";
+    next.style.opacity = state.index >= state.maxIndex ? "0.45" : "1";
+
+    prev.style.pointerEvents = state.index <= 0 ? "none" : "auto";
+    next.style.pointerEvents = state.index >= state.maxIndex ? "none" : "auto";
+  }
+
+  function step() {
+    return window.innerWidth <= 992 ? 1 : state.visibles;
+  }
+
+  next.addEventListener("click", () => {
+    state.index = Math.min(state.index + step(), state.maxIndex);
+    update();
+  });
+
+  prev.addEventListener("click", () => {
+    state.index = Math.max(state.index - step(), 0);
+    update();
+  });
+
+  let startX = 0;
+  let endX = 0;
+
+  viewport.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  viewport.addEventListener("touchmove", (e) => {
+    endX = e.touches[0].clientX;
+  }, { passive: true });
+
+  viewport.addEventListener("touchend", () => {
+    const diff = startX - endX;
+
+    if (diff > 50) {
+      state.index = Math.min(state.index + 1, state.maxIndex);
+      update();
+    } else if (diff < -50) {
+      state.index = Math.max(state.index - 1, 0);
+      update();
+    }
+
+    startX = 0;
+    endX = 0;
+  });
+
+  window.addEventListener("resize", () => {
+    update();
+  });
+
+  update();
+}

@@ -62,7 +62,6 @@
         <nav class="nav-desktop" aria-label="Menú principal">
           <ul class="nav-desktop__lista">
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#sobre-soocurvy">Sobre Soo Curvy</a></li>
             <li><a href="#prendas">Prendas</a></li>
             <li><a href="#galeria">Galería</a></li>
             <li><a href="#frases">Frases</a></li>
@@ -118,7 +117,7 @@
           <nav class="menu-movil__nav" aria-label="Menú móvil">
             <ul class="menu-movil__lista">
               <li><a href="#inicio">Inicio</a></li>
-              <li><a href="#sobre-soocurvy">Sobre Soo Curvy</a></li>
+             
               <li><a href="#prendas">Prendas</a></li>
               <li><a href="#galeria">Galería</a></li>
               <li><a href="#frases">Frases</a></li>
@@ -261,158 +260,129 @@
         </div>
       </section>
 
-      <!-- ===================================================== -->
-      <!-- ================= SOBRE SOO CURVY =================== -->
-      <!-- ===================================================== -->
-      <section class="seccion seccion-sobre" id="sobre-soocurvy">
-        <div class="seccion-sobre__fondo"></div>
-
-        <div class="contenedor">
-          <div class="encabezado-seccion" data-animacion="subir">
-            <span class="encabezado-seccion__subtitulo">Conoce nuestra esencia</span>
-            <h2 class="encabezado-seccion__titulo">Sobre Soo Curvy</h2>
-            <p class="encabezado-seccion__texto">
-              En Soo Curvy Tallas Extras nos encanta ofrecer prendas pensadas
-              para mujeres que quieren verse bonitas, sentirse cómodas y disfrutar
-              su estilo con seguridad.
-            </p>
-          </div>
-
-          <div class="seccion-sobre__grid">
-            <article class="tarjeta-sobre" data-animacion="entrada-izquierda">
-              <div class="tarjeta-sobre__icono">
-                <img src="imgs/icono-vineta.webp" alt="Detalle floral" />
-              </div>
-              <h3>Moda para mujeres reales</h3>
-              <p>
-                Nuestro espacio está hecho para mujeres con curvas que buscan
-                opciones lindas, actuales y favorecedoras para distintas ocasiones.
-              </p>
-            </article>
-
-            <article class="tarjeta-sobre" data-animacion="subir">
-              <div class="tarjeta-sobre__icono">
-                <img src="imgs/icono-vineta.webp" alt="Detalle floral" />
-              </div>
-              <h3>Atención cercana</h3>
-              <p>
-                Queremos que cada clienta se sienta atendida, segura y acompañada
-                al momento de elegir sus prendas, resolver dudas y confirmar su compra.
-              </p>
-            </article>
-
-            <article class="tarjeta-sobre" data-animacion="entrada-derecha">
-              <div class="tarjeta-sobre__icono">
-                <img src="imgs/icono-vineta.webp" alt="Detalle floral" />
-              </div>
-              <h3>Compra fácil y práctica</h3>
-              <p>
-                Publicamos novedades en redes, explicamos claramente la dinámica
-                de compra y ofrecemos opciones de entrega para facilitar todo el proceso.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
 
       <!-- ===================================================== -->
       <!-- ============== PRENDAS QUE MANEJAMOS ================ -->
       <!-- ===================================================== -->
-      <section class="seccion seccion-prendas" id="prendas">
-        <div class="contenedor">
+<section class="seccion seccion-prendas" id="prendas">
+  <div class="contenedor">
 
-          <div class="encabezado-seccion" data-animacion="subir">
-            <span class="encabezado-seccion__subtitulo">Lo que puedes encontrar</span>
-            <h2 class="encabezado-seccion__titulo">Prendas que manejamos</h2>
-            <p class="encabezado-seccion__texto">
-              En Soo Curvy manejamos prendas para mujer en tallas extra pensadas
-              para el día a día, salidas, ocasiones especiales o simplemente para
-              sentirte cómoda y arreglada.
-            </p>
-          </div>
+    <div class="encabezado-seccion" data-animacion="subir">
+      <span class="encabezado-seccion__subtitulo">Lo que puedes encontrar</span>
+      <h2 class="encabezado-seccion__titulo">Prendas que manejamos</h2>
+      <p class="encabezado-seccion__texto">
+        En Soo Curvy manejamos prendas para mujer en tallas extra pensadas
+        para el día a día, salidas, ocasiones especiales o simplemente para
+        sentirte cómoda y arreglada.
+      </p>
+    </div>
 
-          <div class="grid-prendas">
+    <div class="prendas-slider__encabezado" data-animacion="subir">
+      <div class="prendas-slider__controles">
+        <button
+          type="button"
+          class="control-prendas control-prendas--prev"
+          id="prendasPrev"
+          aria-label="Ver prendas anteriores"
+        >
+          ‹
+        </button>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-jeans.webp" alt="Ícono de jeans" class="card-prenda__icono" />
-              <h3>Jeans</h3>
-            </article>
+        <button
+          type="button"
+          class="control-prendas control-prendas--next"
+          id="prendasNext"
+          aria-label="Ver prendas siguientes"
+        >
+          ›
+        </button>
+      </div>
+    </div>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-pantalon.webp" alt="Ícono de pantalón" class="card-prenda__icono" />
-              <h3>Pantalones</h3>
-            </article>
+    <div class="prendas-slider__viewport" id="prendasViewport" data-animacion="subir">
+      <div class="grid-prendas grid-prendas--slider" id="prendasTrack">
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-blusa.webp" alt="Ícono de blusa" class="card-prenda__icono" />
-              <h3>Blusas</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-jeans.webp" alt="Ícono de jeans" class="card-prenda__icono" />
+          <h3>Jeans</h3>
+        </article>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-camisa.webp" alt="Ícono de camisa" class="card-prenda__icono" />
-              <h3>Camisas</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-pantalon.webp" alt="Ícono de pantalón" class="card-prenda__icono" />
+          <h3>Pantalones</h3>
+        </article>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-vestido.webp" alt="Ícono de vestido" class="card-prenda__icono" />
-              <h3>Vestidos</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-blusa.webp" alt="Ícono de blusa" class="card-prenda__icono" />
+          <h3>Blusas</h3>
+        </article>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-falda.webp" alt="Ícono de falda" class="card-prenda__icono" />
-              <h3>Faldas</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-camisa.webp" alt="Ícono de camisa" class="card-prenda__icono" />
+          <h3>Camisas</h3>
+        </article>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-short.webp" alt="Ícono de short" class="card-prenda__icono" />
-              <h3>Shorts</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-vestido.webp" alt="Ícono de vestido" class="card-prenda__icono" />
+          <h3>Vestidos</h3>
+        </article>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-conjunto.webp" alt="Ícono de conjunto" class="card-prenda__icono" />
-              <h3>Conjuntos</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-falda.webp" alt="Ícono de falda" class="card-prenda__icono" />
+          <h3>Faldas</h3>
+        </article>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-chamarra.webp" alt="Ícono de chamarra" class="card-prenda__icono" />
-              <h3>Chamarras</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-short.webp" alt="Ícono de short" class="card-prenda__icono" />
+          <h3>Shorts</h3>
+        </article>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-sueter.webp" alt="Ícono de suéter" class="card-prenda__icono" />
-              <h3>Suéteres</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-conjunto.webp" alt="Ícono de conjunto" class="card-prenda__icono" />
+          <h3>Conjuntos</h3>
+        </article>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-basicos.webp" alt="Ícono de básicos" class="card-prenda__icono" />
-              <h3>Básicos</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-chamarra.webp" alt="Ícono de chamarra" class="card-prenda__icono" />
+          <h3>Chamarras</h3>
+        </article>
 
-            <article class="card-prenda" data-animacion="subir">
-              <img src="imgs/icono-otros.webp" alt="Ícono de otros productos" class="card-prenda__icono" />
-              <h3>Otros</h3>
-            </article>
+        <article class="card-prenda">
+          <img src="imgs/icono-sueter.webp" alt="Ícono de suéter" class="card-prenda__icono" />
+          <h3>Suéteres</h3>
+        </article>
 
-          </div>
+        <article class="card-prenda">
+          <img src="imgs/icono-basicos.webp" alt="Ícono de básicos" class="card-prenda__icono" />
+          <h3>Básicos</h3>
+        </article>
 
-          <div class="seccion-prendas__aviso" data-animacion="subir">
-            <p>
-              La disponibilidad de modelos, colores y tallas se publica
-              constantemente en nuestra página de Facebook.
-            </p>
+        <article class="card-prenda">
+          <img src="imgs/icono-otros.webp" alt="Ícono de otros productos" class="card-prenda__icono" />
+          <h3>Otros</h3>
+        </article>
 
-            <a
-              href="https://www.facebook.com/SooCurvyMty"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="boton boton--facebook-galeria"
-            >
-              <img src="imgs/icono-facebook.png" alt="Facebook" class="boton__icono" />
-              <span>Ver prendas disponibles</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      </div>
+    </div>
+
+    <div class="seccion-prendas__aviso" data-animacion="subir">
+      <p>
+        La disponibilidad de modelos, colores y tallas se publica
+        constantemente en nuestra página de Facebook.
+      </p>
+
+      <a
+        href="https://www.facebook.com/SooCurvyMty"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="boton boton--facebook-galeria"
+      >
+        <img src="imgs/icono-facebook.png" alt="Facebook" class="boton__icono" />
+        <span>Ver prendas disponibles</span>
+      </a>
+    </div>
+  </div>
+</section>
 
       <!-- ===================================================== -->
       <!-- ================= GALERÍA DE PRODUCTOS ============== -->
@@ -1135,7 +1105,6 @@
           <div class="footer-soocurvy__col">
             <h3>Secciones</h3>
             <ul>
-              <li><a href="#sobre-soocurvy">Sobre Soo Curvy</a></li>
               <li><a href="#prendas">Prendas</a></li>
               <li><a href="#galeria">Galería</a></li>
               <li><a href="#como-comprar">Cómo comprar</a></li>
