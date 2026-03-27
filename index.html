@@ -248,7 +248,7 @@
           <div class="hero-soocurvy__visual" data-animacion="entrada-derecha">
             <div class="hero-soocurvy__fondo-monita"></div>
             <img
-              src="imgs/monita-principal.webp"
+              src="imgs/monita-espejo.webp"
               alt="Ilustración principal de Soo Curvy"
               class="hero-soocurvy__monita"
             />
@@ -542,75 +542,287 @@
 
       <!-- ===================================================== -->
       <!-- ================== FRASES BONITAS =================== -->
-      <!-- ===================================================== -->
-      <section class="seccion seccion-frases" id="frases">
-        <div class="seccion-frases__fondo"></div>
+      
+<!-- ===================================================== -->
+<!-- =========== LOOKS QUE CAMBIAN CONTIGO =============== -->
+<!-- ===================================================== -->
+<section class="seccion seccion-cambio-looks" id="frases">
+  <div class="seccion-cambio-looks__fondo"></div>
 
-        <div class="contenedor">
-          <div class="encabezado-seccion" data-animacion="subir">
-            <span class="encabezado-seccion__subtitulo">Un espacio para sentirte tú</span>
-            <h2 class="encabezado-seccion__titulo">Frases para mujeres con curvas</h2>
-            <p class="encabezado-seccion__texto">
-              En Soo Curvy creemos que la moda también es una forma de abrazar tu
-              esencia, sentirte segura y disfrutar cada detalle de tu estilo.
-            </p>
+  <div class="contenedor">
+    <div class="encabezado-seccion" data-animacion="subir">
+      <span class="encabezado-seccion__subtitulo">Un espacio para sentirte tú</span>
+      <h2 class="encabezado-seccion__titulo">Looks que cambian contigo</h2>
+      <p class="encabezado-seccion__texto">
+        En Soo Curvy creemos que cada prenda puede acompañarte de una forma distinta.
+        Descubre estilos pensados para hacerte sentir cómoda, linda y segura en cada momento.
+      </p>
+    </div>
+
+    <div class="seccion-cambio-looks__contenido">
+      <!-- =========================
+           COLUMNA IZQUIERDA
+      ========================== -->
+      <div class="seccion-cambio-looks__columna seccion-cambio-looks__columna--izquierda">
+        <article class="look-card look-card--diamantina is-active" data-look-info="principal" data-animacion="entrada-izquierda">
+          <span class="look-card__tag">Soo Curvy Style</span>
+          <h3 class="look-card__titulo">Muchos estilos disponibles</h3>
+          <p class="look-card__frase">
+            Cada curva merece un look que la haga sentir bonita, segura y muy ella.
+          </p>
+        </article>
+
+        <article class="look-card look-card--rosita" data-look-info="shorts" data-animacion="subir">
+          <span class="look-card__tag">Frescura curvy</span>
+          <h3 class="look-card__titulo">SHORTS</h3>
+          <p class="look-card__frase">
+            Una opción ligera y favorecedora para sentirte libre, cómoda y linda al mismo tiempo.
+          </p>
+        </article>
+
+        <article class="look-card look-card--flores" data-look-info="vestidocorto" data-animacion="subir">
+          <span class="look-card__tag">Toque coqueto</span>
+          <h3 class="look-card__titulo">VESTIDOS CASUALES</h3>
+          <p class="look-card__frase">
+            Un look coqueto y encantador para días donde quieres sentirte femenina, fresca y segura.
+          </p>
+        </article>
+
+        <article class="look-card look-card--dorado" data-look-info="sudaderayjeans" data-animacion="entrada-izquierda">
+          <span class="look-card__tag">Comfy con estilo</span>
+          <h3 class="look-card__titulo">SUDADERAS Y JEANS</h3>
+          <p class="look-card__frase">
+            Para esos días en los que quieres sentirte cómoda, abrigadita y aun así verte súper linda.
+          </p>
+        </article>
+
+        <article class="look-card look-card--lila" data-look-info="jumpers" data-animacion="subir">
+          <span class="look-card__tag">Outfit completo</span>
+          <h3 class="look-card__titulo">JUMPERS</h3>
+          <p class="look-card__frase">
+            Cómodos, prácticos y con un toque muy lindo para resaltar tus curvas con estilo.
+          </p>
+        </article>
+
+        <article class="look-card look-card--diamantina" data-look-info="pantalon" data-animacion="subir">
+          <span class="look-card__tag">Básico infalible</span>
+          <h3 class="look-card__titulo">PANTALÓN</h3>
+          <p class="look-card__frase">
+            Una prenda versátil para combinar, moverte con seguridad y sentirte arreglada todos los días.
+          </p>
+        </article>
+      </div>
+
+      <!-- =========================
+           CENTRO / MONITA
+      ========================== -->
+      <div class="seccion-cambio-looks__centro" data-animacion="subir">
+        <div
+          class="cambio-looks__slider"
+          id="sliderLooks"
+          tabindex="0"
+          aria-label="Looks de Soo Curvy"
+        >
+          <div class="cambio-looks__halo"></div>
+
+          <div class="cambio-looks__wipe-line" aria-hidden="true"></div>
+
+          <div class="cambio-looks__imagenes">
+            <img
+              src="imgs/principal.webp"
+              alt="Monita principal de Soo Curvy"
+              class="cambio-looks__imagen is-active"
+              data-look="principal"
+            />
+
+            <img
+              src="imgs/shorts.webp"
+              alt="Monita con shorts"
+              class="cambio-looks__imagen"
+              data-look="shorts"
+            />
+
+            <img
+              src="imgs/vestidocorto.webp"
+              alt="Monita con vestido corto"
+              class="cambio-looks__imagen"
+              data-look="vestidocorto"
+            />
+
+            <img
+              src="imgs/sudaderayjeans.webp"
+              alt="Monita con sudadera y jeans"
+              class="cambio-looks__imagen"
+              data-look="sudaderayjeans"
+            />
+
+            <img
+              src="imgs/jumpers.webp"
+              alt="Monita con jumpers"
+              class="cambio-looks__imagen"
+              data-look="jumpers"
+            />
+
+            <img
+              src="imgs/pantalon.webp"
+              alt="Monita con pantalón"
+              class="cambio-looks__imagen"
+              data-look="pantalon"
+            />
+
+            <img
+              src="imgs/conjuntos.webp"
+              alt="Monita con conjuntos"
+              class="cambio-looks__imagen"
+              data-look="conjuntos"
+            />
+
+            <img
+              src="imgs/sueterypants.webp"
+              alt="Monita con suéter y pants"
+              class="cambio-looks__imagen"
+              data-look="sueterypants"
+            />
+
+            <img
+              src="imgs/faldayblusas.webp"
+              alt="Monita con falda y blusas"
+              class="cambio-looks__imagen"
+              data-look="faldayblusas"
+            />
+
+            <img
+              src="imgs/chamarras.webp"
+              alt="Monita con chamarras"
+              class="cambio-looks__imagen"
+              data-look="chamarras"
+            />
+
+            <img
+              src="imgs/vestidofiesta.webp"
+              alt="Monita con vestido de fiesta"
+              class="cambio-looks__imagen"
+              data-look="vestidofiesta"
+            />
+
+            <img
+              src="imgs/pijamas.webp"
+              alt="Monita con pijamas"
+              class="cambio-looks__imagen"
+              data-look="pijamas"
+            />
           </div>
 
-          <div class="seccion-frases__contenido">
-            <div class="seccion-frases__columna seccion-frases__columna--izquierda">
-              <article class="frase-card frase-card--diamantina" data-animacion="entrada-izquierda">
-                <p>“Tus curvas también merecen brillar.”</p>
-              </article>
+          <button
+            type="button"
+            class="cambio-looks__control cambio-looks__control--prev"
+            id="looksPrev"
+            aria-label="Ver look anterior"
+          >
+            ‹
+          </button>
 
-              <article class="frase-card frase-card--rosita" data-animacion="subir">
-                <p>“Tu talla no limita tu estilo.”</p>
-              </article>
+          <button
+            type="button"
+            class="cambio-looks__control cambio-looks__control--next"
+            id="looksNext"
+            aria-label="Ver siguiente look"
+          >
+            ›
+          </button>
 
-              <article class="frase-card frase-card--flores" data-animacion="subir">
-                <p>“Vestirte bonito también es una forma de amor propio.”</p>
-              </article>
-
-              <article class="frase-card frase-card--dorado" data-animacion="entrada-izquierda">
-                <p>“Si te hace sentir bonita, te queda perfecto.”</p>
-              </article>
-
-              <article class="frase-card frase-card--lila" data-animacion="subir">
-                <p>“Hecha para mujeres reales, con curvas reales y estilo propio.”</p>
-              </article>
-            </div>
-
-            <div class="seccion-frases__centro" data-animacion="subir">
-              <img
-                src="imgs/monita-espejo.webp"
-                alt="Ilustración decorativa de Soo Curvy"
-                class="seccion-frases__monita"
-              />
-            </div>
-
-            <div class="seccion-frases__columna seccion-frases__columna--derecha">
-              <article class="frase-card frase-card--flores" data-animacion="entrada-derecha">
-                <p>“Siéntete cómoda, segura y hermosa a tu manera.”</p>
-              </article>
-
-              <article class="frase-card frase-card--dorado" data-animacion="subir">
-                <p>“Curvas con estilo, seguridad y actitud.”</p>
-              </article>
-
-              <article class="frase-card frase-card--diamantina" data-animacion="subir">
-                <p>“La moda también es para ti, para tu cuerpo y para tu estilo.”</p>
-              </article>
-
-              <article class="frase-card frase-card--rosita" data-animacion="entrada-derecha">
-                <p>“No se trata de esconderte, se trata de lucirte.”</p>
-              </article>
-
-              <article class="frase-card frase-card--lila" data-animacion="subir">
-                <p>“Cada curva tiene su propia belleza.”</p>
-              </article>
-            </div>
-          </div>
+          <div class="cambio-looks__destello cambio-looks__destello--uno"></div>
+          <div class="cambio-looks__destello cambio-looks__destello--dos"></div>
+          <div class="cambio-looks__destello cambio-looks__destello--tres"></div>
         </div>
-      </section>
+      </div>
+
+      <!-- =========================
+           COLUMNA DERECHA
+      ========================== -->
+      <div class="seccion-cambio-looks__columna seccion-cambio-looks__columna--derecha">
+        <article class="look-card look-card--flores" data-look-info="conjuntos" data-animacion="entrada-derecha">
+          <span class="look-card__tag">Todo combina</span>
+          <h3 class="look-card__titulo">CONJUNTOS</h3>
+          <p class="look-card__frase">
+            Looks armados para que te sientas segura, femenina y lista para salir sin complicarte.
+          </p>
+        </article>
+
+        <article class="look-card look-card--dorado" data-look-info="sueterypants" data-animacion="subir">
+          <span class="look-card__tag">Comfort bonito</span>
+          <h3 class="look-card__titulo">SUÉTERES Y PANTS</h3>
+          <p class="look-card__frase">
+            Para esos días donde el comfort también merece verse lindo, tierno y con mucho estilo.
+          </p>
+        </article>
+
+        <article class="look-card look-card--diamantina" data-look-info="faldayblusas" data-animacion="subir">
+          <span class="look-card__tag">Femenino curvy</span>
+          <h3 class="look-card__titulo">FALDAS Y BLUSAS</h3>
+          <p class="look-card__frase">
+            Una combinación que resalta tu estilo con delicadeza, actitud y mucha personalidad.
+          </p>
+        </article>
+
+        <article class="look-card look-card--rosita" data-look-info="chamarras" data-animacion="entrada-derecha">
+          <span class="look-card__tag">Toque final</span>
+          <h3 class="look-card__titulo">CHAMARRAS</h3>
+          <p class="look-card__frase">
+            Una chamarra puede elevar tu outfit y darle más presencia, seguridad y estilo.
+          </p>
+        </article>
+
+        <article class="look-card look-card--lila" data-look-info="vestidofiesta" data-animacion="subir">
+          <span class="look-card__tag">Momento especial</span>
+          <h3 class="look-card__titulo">VESTIDO DE FIESTA</h3>
+          <p class="look-card__frase">
+            Porque cada celebración merece un look que te haga sentir espectacular, segura y radiante.
+          </p>
+        </article>
+
+        <article class="look-card look-card--diamantina" data-look-info="pijamas" data-animacion="subir">
+          <span class="look-card__tag">Descanso bonito</span>
+          <h3 class="look-card__titulo">PIJAMAS</h3>
+          <p class="look-card__frase">
+            Suavecitas, lindas y pensadas para que descanses, te relajes y sigas sintiéndote tú.
+          </p>
+        </article>
+      </div>
+    </div>
+
+    <div class="cambio-looks__footer" data-animacion="subir">
+      <div class="cambio-looks__miniaturas" id="looksDots" aria-label="Seleccionar look">
+        <button type="button" class="cambio-looks__dot is-active" data-index="0" aria-label="Ver look principal"></button>
+        <button type="button" class="cambio-looks__dot" data-index="1" aria-label="Ver look shorts"></button>
+        <button type="button" class="cambio-looks__dot" data-index="2" aria-label="Ver look vestido corto"></button>
+        <button type="button" class="cambio-looks__dot" data-index="3" aria-label="Ver look sudadera y jeans"></button>
+        <button type="button" class="cambio-looks__dot" data-index="4" aria-label="Ver look jumpers"></button>
+        <button type="button" class="cambio-looks__dot" data-index="5" aria-label="Ver look pantalón"></button>
+        <button type="button" class="cambio-looks__dot" data-index="6" aria-label="Ver look conjuntos"></button>
+        <button type="button" class="cambio-looks__dot" data-index="7" aria-label="Ver look suéter y pants"></button>
+        <button type="button" class="cambio-looks__dot" data-index="8" aria-label="Ver look falda y blusas"></button>
+        <button type="button" class="cambio-looks__dot" data-index="9" aria-label="Ver look chamarras"></button>
+        <button type="button" class="cambio-looks__dot" data-index="10" aria-label="Ver look vestido de fiesta"></button>
+        <button type="button" class="cambio-looks__dot" data-index="11" aria-label="Ver look pijamas"></button>
+      </div>
+
+      <div class="cambio-looks__cta">
+        <a
+          href="https://wa.me/528127534215?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20sus%20prendas"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="boton boton--principal"
+        >
+          <img src="imgs/icono-whatsapp.png" alt="WhatsApp" class="boton__icono" />
+          <span>Preguntar por este estilo</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+      
 
       <!-- ===================================================== -->
       <!-- ================== CÓMO COMPRAR ===================== -->

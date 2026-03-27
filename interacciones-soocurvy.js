@@ -439,6 +439,398 @@
   }
 })();
 
+/* =========================================================
+   SOO CURVY TALLAS EXTRAS
+   NUEVA SECCIÓN
+   LOOKS QUE CAMBIAN CONTIGO
+========================================================= */
+
+(() => {
+  "use strict";
+
+  const $ = (selector, scope = document) => scope.querySelector(selector);
+  const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initCambioLooks();
+  });
+
+  function initCambioLooks() {
+    const slider = $("#sliderLooks");
+    const imagenes = $$(".cambio-looks__imagen", slider);
+    const prev = $("#looksPrev");
+    const next = $("#looksNext");
+    const wipeLine = $(".cambio-looks__wipe-line", slider);
+    const dots = $$(".cambio-looks__dot");
+    const cards = $$(".look-card");
+
+    if (!slider || !imagenes.length || !prev || !next || !wipeLine || !dots.length || !cards.length) {
+      return;
+    }
+
+    const state = {
+      index: Math.max(
+        0,
+        imagenes.findIndex((img) => img.classList.contains("is-active"))
+      ),
+      total: imagenes.length,
+      autoplayDelay: reduceMotion ? 6500 : 3600,
+      autoplayId: null,
+      paused: false,
+      isAnimating: false,
+      touchStartX: 0,
+      touchEndX: 0,
+      isTouching: false
+    };
+
+    if (state.index < 0) state.index = 0;
+
+    const lookMap = imagenes.map((img) => img.dataset.look || "");
+
+    function getImageByIndex(index) {
+      return imagenes[index] || null;
+    }
+
+    function getLookNameByIndex(index) {
+      return lookMap[index] || "";
+    }
+
+    function actualizarCards(index) {
+      const lookActivo = getLookNameByIndex(index);
+
+      cards.forEach((card) => {
+        const coincide = card.dataset.lookInfo === lookActivo;
+        card.classList.toggle("is-active", coincide);
+        card.classList.toggle("is-inactive", !coincide);
+        card.setAttribute("aria-current", coincide ? "true" : "false");
+      });
+    }
+
+    function actualizarDots(index) {
+      dots.forEach((dot, i) => {
+        const activo = i === index;
+        dot.classList.toggle("is-active", activo);
+        dot.setAttribute("aria-current", activo ? "true" : "false");
+      });
+    }
+
+    function posicionInicialImagenes() {
+      imagenes.forEach((img, i) => {
+        img.classList.toggle("is-active", i === state.index);
+        img.classList.remove("is-reveal");
+        img.style.zIndex = i === state.index ? "2" : "1";
+        img.style.clipPath = "";
+      });
+
+      actualizarDots(state.index);
+      actualizarCards(state.index);
+    }
+
+    function animarWipeLine() {
+      if (reduceMotion) return;
+
+      wipeLine.classList.remove("is-animating");
+      void wipeLine.offsetWidth;
+      wipeLine.classList.add("is-animating");
+    }
+
+    function limpiarImagenesDespuesDeAnimar(indexActivo) {
+      imagenes.forEach((img, i) => {
+        img.classList.toggle("is-active", i === indexActivo);
+        img.classList.remove("is-reveal");
+        img.style.zIndex = i === indexActivo ? "2" : "1";
+        img.style.clipPath = "";
+      });
+    }
+
+    function irA(indexDestino) {
+      if (state.isAnimating) return;
+      if (indexDestino === state.index) return;
+
+      const actual = getImageByIndex(state.index);
+      const siguiente = getImageByIndex(indexDestino);
+
+      if (!actual || !siguiente) return;
+
+      state.isAnimating = true;
+
+      actualizarDots(indexDestino);
+      actualizarCards(indexDestino);
+
+      if (reduceMotion) {
+        actual.classList.remove("is-active", "is-reveal");
+        siguiente.classList.add("is-active");
+        siguiente.classList.remove("is-reveal");
+
+        state.index = indexDestino;
+        state.isAnimating = false;
+        return;
+      }
+
+      const ancho = siguiente.getBoundingClientRect().width || 400;
+
+      siguiente.classList.add("is-reveal");
+      siguiente.classList.remove("is-active");
+      siguiente.style.zIndex = "3";
+      siguiente.style.clipPath = `inset(0 ${ancho}px 0 0)`;
+
+      actual.classList.add("is-active");
+      actual.style.zIndex = "2";
+
+      animarWipeLine();
+
+      requestAnimationFrame(() => {
+        siguiente.style.transition =
+          "clip-path 0.95s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, visibility 0.25s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+        siguiente.style.clipPath = "inset(0 0 0 0)";
+      });
+
+      setTimeout(() => {
+        state.index = indexDestino;
+        limpiarImagenesDespuesDeAnimar(state.index);
+        state.isAnimating = false;
+      }, 360);
+    }
+
+    function siguiente() {
+      const nuevo = (state.index + 1) % state.total;
+      irA(nuevo);
+    }
+
+    function anterior() {
+      const nuevo = (state.index - 1 + state.total) % state.total;
+      irA(nuevo);
+    }
+
+    function detenerAutoplay() {
+      if (state.autoplayId) {
+        clearInterval(state.autoplayId);
+        state.autoplayId = null;
+      }
+    }
+
+    function iniciarAutoplay() {
+      detenerAutoplay();
+
+      if (state.total <= 1) return;
+
+      state.autoplayId = setInterval(() => {
+        if (document.hidden || state.paused || state.isAnimating) return;
+        siguiente();
+      }, state.autoplayDelay);
+    }
+
+    function reiniciarAutoplay() {
+      detenerAutoplay();
+      iniciarAutoplay();
+    }
+
+    function bindControles() {
+      next.addEventListener("click", () => {
+        siguiente();
+        reiniciarAutoplay();
+      });
+
+      prev.addEventListener("click", () => {
+        anterior();
+        reiniciarAutoplay();
+      });
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+          if (i === state.index) return;
+          irA(i);
+          reiniciarAutoplay();
+        });
+      });
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const look = card.dataset.lookInfo;
+          const index = lookMap.findIndex((item) => item === look);
+
+          if (index < 0 || index === state.index) return;
+
+          irA(index);
+          reiniciarAutoplay();
+        });
+      });
+    }
+
+    function bindHoverPause() {
+      slider.addEventListener("mouseenter", () => {
+        state.paused = true;
+      });
+
+      slider.addEventListener("mouseleave", () => {
+        state.paused = false;
+      });
+
+      slider.addEventListener("focusin", () => {
+        state.paused = true;
+      });
+
+      slider.addEventListener("focusout", () => {
+        state.paused = false;
+      });
+    }
+
+    function bindKeyboard() {
+      slider.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          siguiente();
+          reiniciarAutoplay();
+        }
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          anterior();
+          reiniciarAutoplay();
+        }
+
+        if (event.key === "Home") {
+          event.preventDefault();
+          irA(0);
+          reiniciarAutoplay();
+        }
+
+        if (event.key === "End") {
+          event.preventDefault();
+          irA(state.total - 1);
+          reiniciarAutoplay();
+        }
+      });
+    }
+
+    function bindTouch() {
+      slider.addEventListener(
+        "touchstart",
+        (event) => {
+          if (!event.touches || !event.touches.length) return;
+          state.touchStartX = event.touches[0].clientX;
+          state.touchEndX = state.touchStartX;
+          state.isTouching = true;
+        },
+        { passive: true }
+      );
+
+      slider.addEventListener(
+        "touchmove",
+        (event) => {
+          if (!state.isTouching || !event.touches || !event.touches.length) return;
+          state.touchEndX = event.touches[0].clientX;
+        },
+        { passive: true }
+      );
+
+      slider.addEventListener(
+        "touchend",
+        () => {
+          if (!state.isTouching) return;
+
+          const distancia = state.touchStartX - state.touchEndX;
+          const umbral = 50;
+
+          if (distancia > umbral) {
+            siguiente();
+            reiniciarAutoplay();
+          } else if (distancia < -umbral) {
+            anterior();
+            reiniciarAutoplay();
+          }
+
+          state.isTouching = false;
+          state.touchStartX = 0;
+          state.touchEndX = 0;
+        },
+        { passive: true }
+      );
+    }
+
+    function bindVisibility() {
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          detenerAutoplay();
+        } else {
+          iniciarAutoplay();
+        }
+      });
+    }
+
+    function bindResize() {
+      let resizeTimeout = null;
+
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+
+        resizeTimeout = setTimeout(() => {
+          limpiarImagenesDespuesDeAnimar(state.index);
+        }, 80);
+      });
+    }
+
+    function bindAccesibilidadCards() {
+      cards.forEach((card) => {
+        card.setAttribute("tabindex", "0");
+
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+
+            const look = card.dataset.lookInfo;
+            const index = lookMap.findIndex((item) => item === look);
+
+            if (index < 0 || index === state.index) return;
+
+            irA(index);
+            reiniciarAutoplay();
+          }
+        });
+      });
+    }
+
+    posicionInicialImagenes();
+    bindControles();
+    bindHoverPause();
+    bindKeyboard();
+    bindTouch();
+    bindVisibility();
+    bindResize();
+    bindAccesibilidadCards();
+    iniciarAutoplay();
+
+    window.sooCurvyLooks = {
+      next: () => {
+        siguiente();
+        reiniciarAutoplay();
+      },
+      prev: () => {
+        anterior();
+        reiniciarAutoplay();
+      },
+      goTo: (index) => {
+        const destino = Math.max(0, Math.min(index, state.total - 1));
+        irA(destino);
+        reiniciarAutoplay();
+      },
+      pause: () => {
+        state.paused = true;
+      },
+      play: () => {
+        state.paused = false;
+        reiniciarAutoplay();
+      },
+      refresh: () => {
+        limpiarImagenesDespuesDeAnimar(state.index);
+        actualizarDots(state.index);
+        actualizarCards(state.index);
+      }
+    };
+  }
+})();
 
 /* =========================================================
    SOO CURVY TALLAS EXTRAS
